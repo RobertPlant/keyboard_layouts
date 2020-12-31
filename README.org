@@ -1,0 +1,27 @@
+* Ergodox
+
+** Set config
+#+begin_src bash
+qmk config user.keyboard=ergodox_ez
+qmk config user.keymap=RobertPlant	
+#+end_src
+
+** Copy configuration
+#+begin_src bash
+    cp ~/qmk_firmware/keyboards/ergodox_ez/keymaps/RobertPlant/* ergodox
+    cp ~/qmk_firmware/ergodox_ez_RobertPlant.hex ergodox
+#+end_src
+
+** Compile
+#+begin_src bash
+    qmk compile
+#+end_src
+
+** Copy configuration
+
+* IBM Model M (Teensy)
+
+#+begin_src bash
+    ./scas ibm.sc ibm.scb
+    ./scwr ibm.scb
+#+end_src
