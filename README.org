@@ -48,7 +48,7 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 Size before:
    text	   data	    bss	    dec	    hex	filename
-      0	  21794	      0	  21794	   5522	.build/ergodox_ez_RobertPlant.hex
+      0	  21828	      0	  21828	   5544	.build/ergodox_ez_RobertPlant.hex
 
 Compiling: keyboards/ergodox_ez/matrix.c                                                            [32;01m[OK][0m
 Compiling: keyboards/ergodox_ez/led_i2c.c                                                           [32;01m[OK][0m
@@ -103,13 +103,13 @@ Compiling: lib/lufa/LUFA/Drivers/USB/Core/Events.c                              
 Compiling: lib/lufa/LUFA/Drivers/USB/Core/HostStandardReq.c                                         [32;01m[OK][0m
 Compiling: lib/lufa/LUFA/Drivers/USB/Core/USBTask.c                                                 [32;01m[OK][0m
 Linking: .build/ergodox_ez_RobertPlant.elf                                                          [33;01m[WARNINGS][0m
- | 
+ |
  | lto-wrapper: warning: Options to Xassembler do not match: -adhlns=.build/obj_ergodox_ez_RobertPlant/matrix.lst, -adhlns=.build/obj_ergodox_ez_RobertPlant/led_i2c.lst, dropping all -Xassembler and -Wa options.
- | 
+ |
 Creating load file for flashing: .build/ergodox_ez_RobertPlant.hex                                  [32;01m[OK][0m
 Copying ergodox_ez_RobertPlant.hex to qmk_firmware folder                                           [32;01m[OK][0m
 Checking file size of ergodox_ez_RobertPlant.hex                                                    [32;01m[OK][0m
- ,* The firmware size is fine - 21794/32256 (67%, 10462 bytes free)
+ ,* The firmware size is fine - 21828/32256 (67%, 10428 bytes free)
 #+end_example
 
 ** Copy built hex file

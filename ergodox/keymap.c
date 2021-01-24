@@ -3,10 +3,11 @@
 
 enum custom_keycodes {
   RGB_SLD = EZ_SAFE_RANGE,
-  STM_GO_ERR,
-  STM_JS_DEBUG,
-  STM_JS_CONST,
-  STM_WPM
+  GO_ERR,
+  JS_DEBUG,
+  JS_CONST,
+  TMUX_LEADER,
+  WPM
 };
 
 char wpm[16];
@@ -19,7 +20,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LGUI,   KC_A,           KC_S,       KC_D,          KC_F,        KC_G,                                                      KC_H,      KC_J,     KC_K,     KC_L,     KC_SCOLON, KC_QUOTE,
     KC_LSHIFT, KC_NONUS_BSLASH,KC_Z,       KC_X,          KC_C,        KC_V,      KC_EQUAL,                        KC_SCOLON,     KC_B,      KC_N,     KC_M,     KC_COMMA, KC_DOT,    KC_SLASH,
     KC_LCTRL,  MO(3),          MO(2),      MO(1),         KC_LALT,                                                                           MO(2),    KC_UNDS,  KC_PMNS,  KC_EQUAL,  KC_RCTRL,
-                                                                                  _______,    _______,  KC_MPLY,   KC_MNXT,
+                                                                                  _______, TMUX_LEADER, KC_PLUS,   KC_MNXT,
                                                                                               KC_HOME,  KC_PGUP,
                                                                        KC_SPACE,  KC_BSPACE,  KC_END,   KC_PGDOWN, KC_TAB,        KC_ENTER
   ),
@@ -45,8 +46,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [3] = LAYOUT_ergodox_pretty(
     _______,   _______,        _______,    _______,       _______,     _______,   _______,                         _______,       _______,   _______,  _______,  _______,  _______,   _______,       
-    _______,   STM_GO_ERR,     STM_WPM,    _______,       _______,     _______,   _______,                         _______,       _______,   _______,  _______,  _______,  _______,   _______,       
-    _______,   STM_JS_CONST,   _______,    STM_JS_DEBUG,  _______,     _______,                                                   _______,   _______,  _______,  _______,  _______,   _______,
+    _______,   GO_ERR,         WPM,        _______,       _______,     _______,   _______,                         _______,       _______,   _______,  _______,  _______,  _______,   _______,
+    _______,   JS_CONST,       _______,    JS_DEBUG,      _______,     _______,                                                   _______,   _______,  _______,  _______,  _______,   _______,
     _______,   _______,        _______,    _______,       _______,     _______,   _______,                         _______,       _______,   _______,  _______,  _______,  _______,   _______,       
     _______,   _______,        _______,    _______,       _______,                                                                           _______,  _______,  _______,  _______,   _______,       
                                                                                   _______,  _______,     RESET,    _______,       
@@ -61,7 +62,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   /**
    * Example go snippet for an error
    */
-  case STM_GO_ERR:
+  case GO_ERR:
     if (record->event.pressed) {
       SEND_STRING("if err != nil {\n\t\n}" SS_TAP(X_UP));
     }
@@ -80,7 +81,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
    *   console.log('exec');
    * }
    **/
-  case STM_JS_DEBUG:
+  case JS_DEBUG:
     if (record->event.pressed) {
       SEND_STRING(
           "^ywoconsole.log('" SS_TAP(X_ESCAPE) "pa');" SS_TAP(X_ESCAPE));
@@ -100,7 +101,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
    *   console.log('exec');
    * }
    **/
-  case STM_JS_CONST:
+  case JS_CONST:
     if (record->event.pressed) {
       SEND_STRING(
           "^t=yboconsole.log('" SS_TAP(X_ESCAPE) "pa');" SS_TAP(X_ESCAPE));
@@ -110,13 +111,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   /**
    * Prints out the current WPM since we don't have a screen to display it
    **/
-  case STM_WPM:
+  case WPM:
     if (record->event.pressed) {
       sprintf(wpm, "%03d", get_current_wpm());
       send_string(wpm);
     }
     break;
+
+  /**
+   * Send the Tmux leader
+   **/
+  case TMUX_LEADER:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LCTL("a"));
+    }
+    break;
   }
+
   return true;
 }
 
