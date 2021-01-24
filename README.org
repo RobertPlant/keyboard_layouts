@@ -124,6 +124,7 @@ cp ~/qmk_firmware/.build/ergodox_ez_RobertPlant.hex .
 cd ~/projects/keyboard_layouts/ergodox
 wally-cli ergodox_ez_RobertPlant.hex
 #+end_src
+
 Note Emacs cant hanlde returning the output of wally-cli, so its hidden. It asks
 you to press set the teensy to flash mode.
 
