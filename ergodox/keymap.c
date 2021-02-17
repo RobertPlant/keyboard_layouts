@@ -16,7 +16,7 @@ char wpm[16];
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_ergodox_pretty(
     KC_ESCAPE, KC_1,           KC_2,       KC_3,          KC_4,        KC_5,      KC_DELETE,                       KC_F5,         KC_6,      KC_7,     KC_8,     KC_9,     KC_0,      KC_BSPACE,
-    KC_TAB,    KC_Q,           KC_W,       KC_E,          KC_R,        KC_T,      _______,                         KC_NONUS_HASH, KC_Y,      KC_U,     KC_I,     KC_O,     KC_P,      _______,       
+    KC_TAB,    KC_Q,           KC_W,       KC_E,          KC_R,        KC_T,      KC_PMNS,                         KC_NONUS_HASH, KC_Y,      KC_U,     KC_I,     KC_O,     KC_P,      _______,
     KC_LGUI,   KC_A,           KC_S,       KC_D,          KC_F,        KC_G,                                                      KC_H,      KC_J,     KC_K,     KC_L,     KC_SCOLON, KC_QUOTE,
     KC_LSHIFT, KC_NONUS_BSLASH,KC_Z,       KC_X,          KC_C,        KC_V,      KC_EQUAL,                        KC_SCOLON,     KC_B,      KC_N,     KC_M,     KC_COMMA, KC_DOT,    KC_SLASH,
     KC_LCTRL,  MO(3),          MO(2),      MO(1),         KC_LALT,                                                                           MO(2),    KC_UNDS,  KC_PMNS,  KC_EQUAL,  KC_RCTRL,
@@ -32,11 +32,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,   KC_EQUAL,       _______,    _______,       _______,                                                                           _______,  _______,  _______,  KC_F11,    KC_F12,
                                                                                   _______,    _______,  _______,   _______,      
                                                                                               _______,  _______,  
-                                                                       _______,   KC_DELETE,  _______,  _______,   _______,       _______
+                                                                       _______,   KC_DELETE,  _______,  _______,   KC_INS,        _______
   ),
   [2] = LAYOUT_ergodox_pretty(
-    _______,   _______,        _______,    KC_MS_WH_UP,   _______,     _______,   _______,                         _______,       _______,   _______,  _______,  _______,  _______,   KC_DELETE,       
-    _______,   _______,        KC_MS_UP,   KC_MS_WH_DOWN, _______,     _______,   _______,                         _______,       _______,   KC_7,     KC_8,     KC_8,     _______,   _______,       
+    _______,   _______,        _______,    KC_MS_WH_UP,   _______,     _______,   _______,                         _______,       _______,   _______,  _______,  _______,  _______,   _______,
+    _______,   _______,        KC_MS_UP,   KC_MS_WH_DOWN, _______,     _______,   _______,                         _______,       _______,   KC_7,     KC_8,     KC_9,     _______,   _______,
     _______,   KC_MS_LEFT,     KC_MS_DOWN, KC_MS_RIGHT,   _______,     _______,                                                   _______,   KC_4,     KC_5,     KC_6,     _______,   _______,
     _______,   _______,        _______,    _______,       _______,     _______,   _______,                         _______,       _______,   KC_1,     KC_2,     KC_3,     _______,   _______,       
     _______,   _______,        _______,    KC_MS_BTN1,    KC_MS_BTN2,                                                                        KC_0,     _______,  _______,  _______,   _______,       
