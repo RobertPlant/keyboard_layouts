@@ -30,8 +30,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,   KC_HASH,        KC_DLR,     KC_LPRN,       KC_RPRN,     KC_GRAVE,                                                  KC_LEFT,   KC_DOWN,  KC_UP,    KC_RIGHT, KC_PLUS,   _______,       
     _______,   KC_PERC,        KC_CIRC,    KC_LBRC,       KC_RBRC,     KC_TILD,   _______,                         _______,       KC_AMPR,   _______,  _______,  _______,  KC_BSLS,   _______,       
     _______,   KC_EQUAL,       _______,    _______,       _______,                                                                           _______,  _______,  _______,  KC_F11,    KC_F12,
-                                                                                  _______,    _______,  _______,   _______,      
-                                                                                              _______,  _______,  
+                                                                                  _______,    _______,  KC_F13,    KC_F14,       
+                                                                                              _______,  KC_F15,   
                                                                        _______,   KC_DELETE,  _______,  _______,   KC_INS,        _______
   ),
   [2] = LAYOUT_ergodox_pretty(
