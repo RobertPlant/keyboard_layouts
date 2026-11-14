@@ -1,7 +1,7 @@
 * Ergodox
 ** Set config
 #+begin_src bash
-qmk config user.keyboard=ergodox_ez
+qmk config user.keyboard=ergodox_ez/base
 qmk config user.keymap=RobertPlant	
 #+end_src
 
