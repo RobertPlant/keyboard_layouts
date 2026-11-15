@@ -30,13 +30,15 @@ nix shell nixpkgs#teensy-loader-cli -c teensy-loader-cli -mmcu=atmega32u4 -w -v 
 
 * IBM Model M (Teensy)
 Not working at the moment, the Teensy is dead and it went through a few of them so I think the
-wiring needs checking before trying another one.
+wiring needs checking before trying another one, ~docs/hardware.html~ has the Teensy wiring.
 
-Runs Soarer's Converter, ~firmware/~ has the converter builds and ~ibm.sc~ is the layout. The
-Soarer tools (~scas~ to build the layout, ~scwr~ to write it) arent kept here any more, they are
-32-bit binaries and need grabbing again along with something like ~steam-run~ to run them on
-NixOS.
+Runs Soarer's Converter, ~firmware/~ has the converter builds, ~docs/~ the docs and ~ibm.sc~ is
+the layout. The tools (~scas~ to build the layout, ~scwr~ to write it) build from the source in
+~tools/~.
 #+begin_src bash
-scas ibm.sc ibm.scb
-scwr ibm.scb
+cd ~/projects/keyboard_layouts/ibm_m_8081
+mkdir -p /tmp/sctools && python3 -m zipfile -e tools/Soarer_sctools_v1.10_source.zip /tmp/sctools
+(cd /tmp/sctools/build/linux && nix-shell -p libusb-compat-0_1 --run make)
+/tmp/sctools/bin/scas ibm.sc ibm.scb
+/tmp/sctools/bin/scwr ibm.scb
 #+end_src
