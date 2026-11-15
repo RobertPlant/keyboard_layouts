@@ -22,9 +22,10 @@ cp ~/qmk_firmware/ergodox_ez_base_RobertPlant.hex ~/projects/keyboard_layouts/er
 #+end_src
 
 ** Flash
-Press the reset button on the keyboard (or ~QK_BOOT~ on layer 3) when it asks.
+Press the reset button on the keyboard (or ~QK_BOOT~ on layer 3) when it asks. ~qmk flash~
+needs the qmk_firmware checkout, this doesnt.
 #+begin_src bash
-cd ~/projects/keyboard_layouts/ergodox && qmk flash ergodox_ez_RobertPlant.hex
+nix shell nixpkgs#teensy-loader-cli -c teensy-loader-cli -mmcu=atmega32u4 -w -v ergodox_ez_RobertPlant.hex
 #+end_src
 
 * IBM Model M (Teensy)
