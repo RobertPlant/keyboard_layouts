@@ -2,33 +2,27 @@
 #include "keymap_uk.h"
 
 enum custom_keycodes {
-  RGB_SLD = SAFE_RANGE,
-  GO_ERR,
-  JS_DEBUG,
-  JS_CONST,
-  TMUX_LEADER,
-  WPM
+  TMUX_LEADER = SAFE_RANGE,
 };
 
-char wpm[16];
-
 // clang-format off
+// KC_NO = dead switch, needs resoldering: left thumb top-left, key below backspace
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_ergodox_pretty(
     KC_ESCAPE, KC_1,           KC_2,       KC_3,          KC_4,        KC_5,      KC_DELETE,                       KC_F5,         KC_6,      KC_7,     KC_8,     KC_9,     KC_0,      KC_BSPC,
-    KC_TAB,    KC_Q,           KC_W,       KC_E,          KC_R,        KC_T,      KC_PMNS,                         KC_NUHS,       KC_Y,      KC_U,     KC_I,     KC_O,     KC_P,      _______,
+    KC_TAB,    KC_Q,           KC_W,       KC_E,          KC_R,        KC_T,      KC_PMNS,                         KC_NUHS,       KC_Y,      KC_U,     KC_I,     KC_O,     KC_P,      KC_NO,
     KC_LGUI,   KC_A,           KC_S,       KC_D,          KC_F,        KC_G,                                                      KC_H,      KC_J,     KC_K,     KC_L,     KC_SCLN,   KC_QUOTE,
     KC_LSFT,   KC_NUBS,        KC_Z,       KC_X,          KC_C,        KC_V,      KC_EQUAL,                        KC_SCLN,       KC_B,      KC_N,     KC_M,     KC_COMMA, KC_DOT,    KC_SLASH,
     KC_LCTL,   MO(3),          MO(2),      MO(1),         KC_LALT,                                                                           MO(2),    KC_UNDS,  KC_PMNS,  KC_EQUAL,  KC_RCTL,
-                                                                           KC_A, TMUX_LEADER, KC_MPLY,  KC_MNXT,
+                                                                           KC_NO, TMUX_LEADER, KC_MPLY,  KC_MNXT,
                                                                                               KC_HOME,  KC_PGUP,
                                                                        KC_SPACE,  KC_BSPC,    KC_END,   KC_PGDN,   KC_TAB,        KC_ENTER
   ),
   [1] = LAYOUT_ergodox_pretty(
     KC_ESCAPE, KC_F1,          KC_F2,      KC_F3,         KC_F4,       KC_F5,     _______,                         _______,       KC_F6,     KC_F7,    KC_F8,    KC_F9,    KC_F10,    KC_DELETE,
-    _______,   KC_EXLM,        KC_AT,      KC_LCBR,       KC_RCBR,     KC_PIPE,   _______,                         _______,       _______,   _______,  _______,  _______,  KC_ASTR,   _______,
-    _______,   KC_HASH,        KC_DLR,     KC_LPRN,       KC_RPRN,     KC_GRAVE,                                                  KC_LEFT,   KC_DOWN,  KC_UP,    KC_RIGHT, KC_PLUS,   _______,       
-    _______,   KC_PERC,        KC_CIRC,    KC_LBRC,       KC_RBRC,     KC_TILD,   _______,                         _______,       KC_AMPR,   _______,  _______,  _______,  KC_BSLS,   _______,       
+    _______,   KC_EXLM,        UK_AT,      KC_LCBR,       KC_RCBR,     UK_PIPE,   _______,                         _______,       _______,   _______,  _______,  _______,  KC_ASTR,   _______,
+    _______,   UK_HASH,        KC_DLR,     KC_LPRN,       KC_RPRN,     KC_GRAVE,                                                  KC_LEFT,   KC_DOWN,  KC_UP,    KC_RIGHT, KC_PLUS,   _______,       
+    _______,   KC_PERC,        KC_CIRC,    KC_LBRC,       KC_RBRC,     UK_TILD,   _______,                         _______,       KC_AMPR,   _______,  _______,  _______,  UK_BSLS,   _______,       
     _______,   KC_EQUAL,       _______,    _______,       _______,                                                                           _______,  _______,  _______,  KC_F11,    KC_F12,
                                                                                   _______,    _______,  KC_F13,    KC_F14,       
                                                                                               _______,  KC_F15,   
@@ -46,8 +40,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [3] = LAYOUT_ergodox_pretty(
     _______,   _______,        _______,    _______,       _______,     _______,   _______,                         _______,       _______,   _______,  _______,  _______,  _______,   _______,       
-    _______,   GO_ERR,         WPM,        _______,       _______,     _______,   _______,                         _______,       _______,   _______,  _______,  _______,  _______,   _______,
-    _______,   JS_CONST,       _______,    JS_DEBUG,      _______,     _______,                                                   _______,   _______,  _______,  _______,  _______,   _______,
+    _______,   _______,        _______,    _______,       _______,     _______,   _______,                         _______,       _______,   _______,  _______,  _______,  _______,   _______,
+    _______,   _______,        _______,    _______,       _______,     _______,                                                   _______,   _______,  _______,  _______,  _______,   _______,
     _______,   _______,        _______,    _______,       _______,     _______,   _______,                         _______,       _______,   _______,  _______,  _______,  _______,   _______,       
     _______,   _______,        _______,    _______,       _______,                                                                           _______,  _______,  _______,  _______,   _______,       
                                                                                   _______,  _______,     QK_BOOT,  _______,       
@@ -59,68 +53,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-  /**
-   * Example go snippet for an error
-   */
-  case GO_ERR:
-    if (record->event.pressed) {
-      SEND_STRING("if err != nil {\n\t\n}" SS_TAP(X_UP));
-    }
-    break;
-
-  /**
-   * Takes the function name and logs it for some hacky debugging.
-   * Accepts named functions only:
-   *
-   * eg:
-   * exec() {
-   * }
-   *
-   * will change to insert
-   * exec() {
-   *   console.log('exec');
-   * }
-   **/
-  case JS_DEBUG:
-    if (record->event.pressed) {
-      SEND_STRING(
-          "^ywoconsole.log('" SS_TAP(X_ESCAPE) "pa');" SS_TAP(X_ESCAPE));
-    }
-    break;
-
-  /**
-   * Takes the function name and logs it for some hacky debugging.
-   * Accepts const anonmymous functions only:
-   *
-   * eg:
-   * const exec = () => {
-   * }
-   *
-   * will change to insert
-   * const exec = () => {
-   *   console.log('exec');
-   * }
-   **/
-  case JS_CONST:
-    if (record->event.pressed) {
-      SEND_STRING(
-          "^t=yboconsole.log('" SS_TAP(X_ESCAPE) "pa');" SS_TAP(X_ESCAPE));
-    }
-    break;
-
-  /**
-   * Prints out the current WPM since we don't have a screen to display it
-   **/
-  case WPM:
-    if (record->event.pressed) {
-      sprintf(wpm, "%03d", get_current_wpm());
-      send_string(wpm);
-    }
-    break;
-
-  /**
-   * Send the Tmux leader
-   **/
   case TMUX_LEADER:
     if (record->event.pressed) {
       SEND_STRING(SS_LCTL("a"));
@@ -145,23 +77,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     ergodox_right_led_2_on();
     break;
   case 3:
-    ergodox_right_led_3_on();
-    break;
-  case 4:
-    ergodox_right_led_1_on();
-    ergodox_right_led_2_on();
-    break;
-  case 5:
-    ergodox_right_led_1_on();
-    ergodox_right_led_3_on();
-    break;
-  case 6:
-    ergodox_right_led_2_on();
-    ergodox_right_led_3_on();
-    break;
-  case 7:
-    ergodox_right_led_1_on();
-    ergodox_right_led_2_on();
     ergodox_right_led_3_on();
     break;
   default:
