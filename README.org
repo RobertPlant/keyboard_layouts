@@ -28,6 +28,15 @@ needs the qmk_firmware checkout, this doesnt.
 nix shell nixpkgs#teensy-loader-cli -c teensy-loader-cli -mmcu=atmega32u4 -w -v ergodox_ez_RobertPlant.hex
 #+end_src
 
+** Keycaps
+~keycaps/~ prints the YUZU keycap design for this keymap: UK legends, layer 1 in the corner,
+the layer 2 numpad in blue and a purple cascade. Import ~ergodox-yuzu.json~ at
+https://yuzukeycaps.com/keyboards/ergodox. Rerun it after changing the keymap.
+#+begin_src bash
+cd ~/projects/keyboard_layouts/keycaps
+nix shell nixpkgs#cargo nixpkgs#rustc nixpkgs#gcc -c cargo run -q > ergodox-yuzu.json
+#+end_src
+
 * IBM Model M (Teensy)
 Not working at the moment, the Teensy is dead and it went through a few of them so I think the
 wiring needs checking before trying another one, ~docs/hardware.html~ has the Teensy wiring.
